@@ -16,6 +16,9 @@ import {
   BarChart3 
 } from 'lucide-react'
 
+// Feature flag to show/hide Messages and ConversionHistory components
+const SHOW_MESSAGES_AND_HISTORY = false
+
 /**
  * Dashboard page
  */
@@ -104,13 +107,15 @@ const Dashboard: React.FC = () => {
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
               {/* Left Column - Messages and Conversion History */}
-              <div className="lg:col-span-1 space-y-4">
-                <Messages messages={messages} />
-                <ConversionHistory />
-              </div>
+              {SHOW_MESSAGES_AND_HISTORY && (
+                <div className="lg:col-span-1 space-y-4">
+                  <Messages messages={messages} />
+                  <ConversionHistory />
+                </div>
+              )}
 
               {/* Right Column - Latest Sales Table */}
-              <div className="lg:col-span-2">
+              <div className={SHOW_MESSAGES_AND_HISTORY ? 'lg:col-span-2' : 'lg:col-span-3'}>
                 <LatestSalesTable sales={sales} />
                 <div className="mt-4">
                   <Pagination
