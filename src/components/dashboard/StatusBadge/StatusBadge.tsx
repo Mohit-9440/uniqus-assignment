@@ -38,11 +38,15 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
   return (
     <span
       className={cn(
-        'px-3 py-1 rounded-full text-sm font-medium',
+        'px-3 py-2 rounded-md text-xs font-medium',
         config.bg,
         config.text,
         className
       )}
+      style={{
+        backgroundColor: status === 'shipped' ? '#E3F2FD' : status === 'processing' ? '#FFF3E0' : '#FFEBEE',
+        color: status === 'shipped' ? '#1976D2' : status === 'processing' ? '#F57C00' : '#D32F2F',
+      }}
     >
       {config.label}
     </span>

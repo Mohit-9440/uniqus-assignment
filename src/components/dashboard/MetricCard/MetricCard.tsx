@@ -38,7 +38,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           <p className="text-sm text-gray-500 mb-1">{title}</p>
           <p className="text-2xl font-bold text-gray-800">{value}</p>
         </div>
-        <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center', bgColorMap[iconBgColor])}>
+        <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center border border-gray-200', bgColorMap[iconBgColor])}>
           {icon}
         </div>
       </div>

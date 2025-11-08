@@ -55,7 +55,7 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
               <button
                 onClick={() => setDateFilter('day')}
                 className={cn(
-                  'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                  'px-3 py-1.5 text-xs font-medium rounded-md transition-colors',
                   dateFilter === 'day'
                     ? 'bg-gray-800 text-white'
                     : 'text-gray-600 hover:bg-gray-100'
@@ -66,7 +66,7 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
               <button
                 onClick={() => setDateFilter('week')}
                 className={cn(
-                  'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                  'px-3 py-1.5 text-xs font-medium rounded-md transition-colors',
                   dateFilter === 'week'
                     ? 'bg-gray-800 text-white'
                     : 'text-gray-600 hover:bg-gray-100'
@@ -77,7 +77,7 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
               <button
                 onClick={() => setDateFilter('month')}
                 className={cn(
-                  'px-3 py-1.5 text-sm font-medium rounded-md flex items-center gap-1 transition-colors',
+                  'px-3 py-1.5 text-xs font-medium rounded-md flex items-center gap-1 transition-colors',
                   dateFilter === 'month'
                     ? 'bg-gray-800 text-white'
                     : 'text-gray-600 hover:bg-gray-100'
@@ -95,25 +95,25 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
         <table className="w-full min-w-[1000px]">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Product
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Customer
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Delivery
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                Status
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
+                
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Subtotal
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Shipping
               </th>
-              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+              <th className="px-4 py-2.5 text-left text-xs font-semibold text-gray-700 tracking-wider">
                 Total
               </th>
             </tr>
@@ -136,7 +136,7 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
                       )}
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-800">{sale.product.name}</p>
+                      <p className="text-xs font-medium text-gray-800">{sale.product.name}</p>
                       <p className="text-xs text-gray-500">ID {sale.product.id}</p>
                     </div>
                   </div>
@@ -144,13 +144,13 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
 
                 {/* Customer */}
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <p className="text-sm font-medium text-gray-800">{sale.customer.name}</p>
+                  <p className="text-xs font-medium text-gray-800">{sale.customer.name}</p>
                   <p className="text-xs text-gray-500">{sale.customer.email}</p>
                 </td>
 
                 {/* Delivery */}
                 <td className="px-4 py-3">
-                  <p className="text-sm font-medium text-gray-800">{sale.delivery.country}</p>
+                  <p className="text-xs font-medium text-gray-800">{sale.delivery.country}</p>
                   <p className="text-xs text-gray-500">{sale.delivery.address}</p>
                 </td>
 
@@ -161,17 +161,17 @@ export const LatestSalesTable: React.FC<LatestSalesTableProps> = ({
 
                 {/* Subtotal */}
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <p className="text-sm text-gray-800">{sale.subtotal}</p>
+                  <p className="text-xs text-gray-800">{sale.subtotal}</p>
                 </td>
 
                 {/* Shipping */}
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <p className="text-sm text-gray-800">{sale.shipping}</p>
+                  <p className="text-xs text-gray-800">{sale.shipping}</p>
                 </td>
 
                 {/* Total */}
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <p className="text-sm font-semibold text-gray-800">{sale.total}</p>
+                  <p className="text-xs font-semibold text-gray-800">{sale.total}</p>
                 </td>
               </tr>
             ))}

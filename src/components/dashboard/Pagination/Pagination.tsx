@@ -22,16 +22,21 @@ export const Pagination: React.FC<PaginationProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('flex items-center justify-center gap-2', className)}>
+    <div className={cn('flex items-center justify-center gap-3', className)}>
       <button
         onClick={onPrev}
         disabled={currentPage === 1}
-        className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className={cn(
+          'px-4 py-2 rounded-md text-sm font-medium transition-colors',
+          'bg-gray-200 text-gray-700',
+          'hover:bg-gray-300',
+          'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200'
+        )}
       >
         &lt; PREV
       </button>
       
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-2">
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
           <button
             key={page}
@@ -40,7 +45,7 @@ export const Pagination: React.FC<PaginationProps> = ({
               'w-8 h-8 rounded-md text-sm font-medium transition-colors',
               currentPage === page
                 ? 'bg-blue-600 text-white'
-                : 'text-gray-600 hover:bg-gray-100'
+                : 'text-gray-900 hover:text-gray-600 bg-transparent'
             )}
           >
             {page}
@@ -51,7 +56,12 @@ export const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={onNext}
         disabled={currentPage === totalPages}
-        className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className={cn(
+          'px-4 py-2 rounded-md text-sm font-medium transition-colors',
+          'bg-gray-200 text-gray-700',
+          'hover:bg-gray-300',
+          'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200'
+        )}
       >
         NEXT &gt;
       </button>

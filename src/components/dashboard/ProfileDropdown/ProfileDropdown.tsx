@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 import { cn } from '@/utils/cn'
-import { User, LogOut, Settings } from 'lucide-react'
+import { Briefcase, CheckSquare, Users, Calendar, Package, FileText } from 'lucide-react'
 
 export interface ProfileDropdownProps {
   isOpen: boolean
@@ -8,8 +8,14 @@ export interface ProfileDropdownProps {
   className?: string
 }
 
+interface NewItem {
+  id: string
+  label: string
+  icon: React.ReactNode
+}
+
 /**
- * ProfileDropdown component
+ * ProfileDropdown component - Shows "New" actions
  */
 export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   isOpen,
@@ -17,6 +23,15 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
   className,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null)
+
+  const newItems: NewItem[] = [
+    { id: 'project', label: 'New Project', icon: <Briefcase className="w-4 h-4 text-indigo-500" /> },
+    { id: 'task', label: 'New Task', icon: <CheckSquare className="w-4 h-4 text-indigo-500" /> },
+    { id: 'contact', label: 'New Contact', icon: <Users className="w-4 h-4 text-indigo-500" /> },
+    { id: 'event', label: 'New Event', icon: <Calendar className="w-4 h-4 text-indigo-500" /> },
+    { id: 'product', label: 'New Product', icon: <Package className="w-4 h-4 text-indigo-500" /> },
+    { id: 'invoice', label: 'New Invoice', icon: <FileText className="w-4 h-4 text-indigo-500" /> },
+  ]
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,33 +55,25 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
     <div
       ref={dropdownRef}
       className={cn(
-        'absolute top-full right-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 z-50',
+        'absolute top-full right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-50',
         className
       )}
     >
-      {/* User Info */}
-      <div className="p-4 border-b border-gray-200">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
-            <User className="w-5 h-5 text-gray-700" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-semibold text-gray-800 text-sm">Bradley Wilkins</p>
-            <p className="text-xs text-gray-500">b.wilkins@gmail.com</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Menu Items */}
-      <div className="py-2">
-        <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3">
-          <Settings className="w-4 h-4" />
-          Settings
-        </button>
-        <button className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 transition-colors flex items-center gap-3">
-          <LogOut className="w-4 h-4" />
-          Logout
-        </button>
+      <div>
+        {newItems.map((item, index) => (
+          <button
+            key={item.id}
+            className={cn(
+              'w-full px-4 py-3 text-left text-xs text-gray-900 hover:bg-gray-50 transition-colors flex items-center gap-3',
+              index !== newItems.length - 1 && 'border-b border-gray-100'
+            )}
+          >
+            <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
+              {item.icon}
+            </div>
+            <span className="font-semibold">{item.label}</span>
+          </button>
+        ))}
       </div>
     </div>
   )
