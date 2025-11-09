@@ -47,8 +47,8 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
       className={cn(
         'fixed left-0 top-0 h-screen bg-white flex flex-col py-6 z-50 transition-all duration-300 shadow-lg border-r border-gray-200',
         'hidden',
-        'min-[480px]:flex',
-        sidebarOpen ? 'w-64' : 'min-[480px]:w-20',
+        'mobile:flex',
+        sidebarOpen ? 'w-64' : 'mobile:w-20',
         className
       )}
     >

@@ -73,8 +73,8 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
       ref={dropdownRef}
       className={cn(
         "absolute top-full mt-1 bg-white rounded-lg shadow-lg z-50",
-        "left-0 min-[480px]:left-auto min-[480px]:right-0 min-[480px]:w-80",
-        "w-72 max-w-[calc(100vw-4rem)] min-[480px]:max-w-none",
+        "left-0 mobile:left-auto mobile:right-0 mobile:w-80",
+        "w-72 max-w-[calc(100vw-4rem)] mobile:max-w-none",
         className
       )}
     >
@@ -83,21 +83,21 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
           <div
             key={activity.id}
             className={cn(
-              "px-3 min-[480px]:px-4 py-2 min-[480px]:py-3 border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer",
+              "px-3 mobile:px-4 py-2 mobile:py-3 border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer",
               index === activities.length - 1 && "border-b-0"
             )}
           >
-            <div className="flex items-start gap-2 min-[480px]:gap-3">
+            <div className="flex items-start gap-2 mobile:gap-3">
               <div
                 className={cn(
-                  "w-7 h-7 min-[480px]:w-8 min-[480px]:h-8 rounded-md flex items-center justify-center flex-shrink-0",
+                  "w-7 h-7 mobile:w-8 mobile:h-8 rounded-md flex items-center justify-center flex-shrink-0",
                   activity.iconBg
                 )}
               >
                 {activity.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-2 min-[480px]:gap-3">
+                <div className="flex items-start justify-between gap-2 mobile:gap-3">
                   <div>
                     <p className="font-semibold text-gray-900 text-xs">
                       {activity.title}
@@ -106,7 +106,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
                       {activity.subtitle}
                     </p>
                   </div>
-                  <span className="px-2 min-[480px]:px-3 py-0.5 min-[480px]:py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-md whitespace-nowrap">
+                  <span className="px-2 mobile:px-3 py-0.5 mobile:py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-md whitespace-nowrap">
                     {activity.date}
                   </span>
                 </div>
@@ -116,13 +116,13 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
         ))}
       </div>
 
-      <div className="px-3 min-[480px]:px-4 py-2 min-[480px]:py-3 border-gray-200">
-        <div className="flex items-center gap-2 min-[480px]:gap-3">
-          <div className="w-7 h-7 min-[480px]:w-8 min-[480px]:h-8 rounded-md bg-gray-200 flex items-center justify-center flex-shrink-0">
+      <div className="px-3 mobile:px-4 py-2 mobile:py-3 border-gray-200">
+        <div className="flex items-center gap-2 mobile:gap-3">
+          <div className="w-7 h-7 mobile:w-8 mobile:h-8 rounded-md bg-gray-200 flex items-center justify-center flex-shrink-0">
             <span className="text-xs font-semibold text-gray-700">BW</span>
           </div>
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-2 min-[480px]:gap-3">
+            <div className="flex items-start justify-between gap-2 mobile:gap-3">
               <div>
                 <p className="font-semibold text-gray-900 text-xs">
                   Bradley Wilkins
@@ -131,7 +131,7 @@ export const SearchDropdown: React.FC<SearchDropdownProps> = ({
                   b.wilkins@gmail.com
                 </p>
               </div>
-              <span className="px-2 min-[480px]:px-3 py-0.5 min-[480px]:py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-md whitespace-nowrap">
+              <span className="px-2 mobile:px-3 py-0.5 mobile:py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-md whitespace-nowrap">
                 Designer
               </span>
             </div>

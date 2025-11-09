@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       screens: {
-        'mobile': {'min': '480px'},
+        'mobile': '480px',
       },
       colors: {
         // Figma design system colors

@@ -21,7 +21,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
     <nav
       className={cn(
         'fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50',
-        'flex min-[480px]:hidden',
+        'flex mobile:hidden',
         className
       )}
     >

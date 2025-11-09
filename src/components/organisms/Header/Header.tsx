@@ -37,8 +37,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 h-16 bg-header-bg flex items-center justify-between z-[9999]",
-        "min-[480px]:left-20 min-[480px]:px-6 px-4",
-        sidebarOpen && "min-[480px]:left-64",
+        "mobile:left-20 mobile:px-6 px-4",
+        sidebarOpen && "mobile:left-64",
         "transition-all duration-300",
         className
       )}
@@ -47,8 +47,8 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
         WebkitBackdropFilter: "none",
       }}
     >
-      <div className="flex items-center gap-2 lg:gap-4 flex-1 min-[480px]:flex-initial">
-        <div className="relative min-[480px]:hidden" data-search-container>
+      <div className="flex items-center gap-2 lg:gap-4 flex-1 mobile:flex-initial">
+        <div className="relative mobile:hidden" data-search-container>
           <div
             className={cn(
               "flex items-center gap-2 rounded-lg transition-all duration-300",
@@ -88,17 +88,17 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
 
         <button
           onClick={toggleSidebar}
-          className="hidden min-[480px]:flex rounded-md p-2 hover:bg-gray-200 transition-colors"
+          className="hidden mobile:flex rounded-md p-2 hover:bg-gray-200 transition-colors"
           aria-label="Toggle menu"
         >
           <Menu className="h-5 w-5 text-gray-700" />
         </button>
 
-        <h1 className="text-base lg:text-lg font-semibold text-gray-800 flex-1 text-center min-[480px]:flex-initial min-[480px]:text-left">{getPageTitle()}</h1>
+        <h1 className="text-base lg:text-lg font-semibold text-gray-800 flex-1 text-center mobile:flex-initial mobile:text-left">{getPageTitle()}</h1>
       </div>
 
       <div className="flex items-center gap-2 lg:gap-4 relative">
-        <div className="relative hidden min-[480px]:block" data-search-container>
+        <div className="relative hidden mobile:block" data-search-container>
           <div
             className={cn(
               "flex items-center gap-2 rounded-lg transition-all duration-300",

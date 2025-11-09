@@ -66,12 +66,12 @@ const Dashboard: React.FC = () => {
       <div 
         className={cn(
           'flex flex-1 flex-col overflow-hidden transition-all duration-300',
-          'min-[480px]:ml-20',
-          sidebarOpen && 'min-[480px]:ml-64'
+          'mobile:ml-20',
+          sidebarOpen && 'mobile:ml-64'
         )}
       >
         <Header />
-        <main className="flex-1 overflow-y-auto pt-16 min-[480px]:pt-24 pb-20 min-[480px]:pb-4 p-4 relative z-0">
+        <main className="flex-1 overflow-y-auto pt-16 mobile:pt-24 pb-20 mobile:pb-4 p-4 relative z-0">
           <div className="mx-auto w-full max-w-7xl">
             <div className="grid grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-3 lg:gap-4 mb-5 sm:mb-6">
               <MetricCard
