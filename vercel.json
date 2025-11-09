@@ -1,6 +1,5 @@
 {
     "buildCommand": "npm run build",
-    "installCommand": "npm ci --legacy-peer-deps --omit=dev",
-    "outputDirectory": "dist",
-    "ignoreCommand": "echo 'Ignoring Storybook and test files'"
+    "installCommand": "npm ci --legacy-peer-deps",
+    "outputDirectory": "dist"
   }
