@@ -1,0 +1,5 @@
+.storybook/
+.vitest/
+node_modules/
+tests/
+*.test.*
