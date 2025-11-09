@@ -1,5 +1,5 @@
 .storybook/
-.vitest/
-node_modules/
-tests/
 *.test.*
+vitest.config.*
+__tests__/
+node_modules/
