@@ -1,10 +1,6 @@
 import { Sale } from '@/components/dashboard/LatestSalesTable'
 import { StatusType } from '@/components/dashboard/StatusBadge'
 
-/**
- * Mock data service
- */
-
 const products = [
   'Macbook Pro',
   'Dell Laptop',

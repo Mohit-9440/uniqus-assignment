@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'mobile': {'min': '480px'},
+      },
       colors: {
         // Figma design system colors
         border: 'hsl(214.3 31.8% 91.4%)',

@@ -6,6 +6,7 @@ import { Messages, Message } from '@/components/dashboard/Messages'
 import { ConversionHistory } from '@/components/dashboard/ConversionHistory'
 import { LatestSalesTable } from '@/components/dashboard/LatestSalesTable'
 import { Pagination } from '@/components/dashboard/Pagination'
+import { BottomNav } from '@/components/dashboard/BottomNav'
 import { getPaginatedSales, getTotalPages } from '@/data/mockData'
 import { useAppStore } from '@/store'
 import { cn } from '@/utils/cn'
@@ -16,12 +17,8 @@ import {
   BarChart3 
 } from 'lucide-react'
 
-// Feature flag to show/hide Messages and ConversionHistory components
 const SHOW_MESSAGES_AND_HISTORY = false
 
-/**
- * Dashboard page
- */
 const Dashboard: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 7
@@ -53,7 +50,6 @@ const Dashboard: React.FC = () => {
     },
   ]
 
-  // Get paginated sales data
   const sales = useMemo(() => {
     return getPaginatedSales(currentPage, itemsPerPage)
   }, [currentPage, itemsPerPage])
@@ -70,43 +66,42 @@ const Dashboard: React.FC = () => {
       <div 
         className={cn(
           'flex flex-1 flex-col overflow-hidden transition-all duration-300',
-          sidebarOpen ? 'ml-64' : 'ml-20'
+          'min-[480px]:ml-20',
+          sidebarOpen && 'min-[480px]:ml-64'
         )}
       >
         <Header />
-        <main className="flex-1 overflow-y-auto pt-24 p-4 relative z-0">
-          <div className="mx-auto w-full">
-            {/* Top Metrics Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <main className="flex-1 overflow-y-auto pt-16 min-[480px]:pt-24 pb-20 min-[480px]:pb-4 p-4 relative z-0">
+          <div className="mx-auto w-full max-w-7xl">
+            <div className="grid grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-3 lg:gap-4 mb-5 sm:mb-6">
               <MetricCard
                 title="New sales"
                 value="1.345"
-                icon={<TrendingUp className="w-5 h-5 text-blue-600" />}
+                icon={<TrendingUp className="w-5 h-5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-blue-600" />}
                 iconBgColor="blue"
               />
               <MetricCard
                 title="New leads"
                 value="2.890"
-                icon={<UsersIcon className="w-5 h-5 text-yellow-600" />}
+                icon={<UsersIcon className="w-5 h-5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-yellow-600" />}
                 iconBgColor="yellow"
               />
               <MetricCard
                 title="Income per lead"
                 value="$1.870"
-                icon={<DollarSign className="w-5 h-5 text-gray-600" />}
+                icon={<DollarSign className="w-5 h-5 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-gray-600" />}
                 iconBgColor="gray"
               />
               <MetricCard
                 title="Conversion rate"
                 value="5.10%"
-                icon={<BarChart3 className="w-5 h-5 text-pink-600" />}
+                icon={<BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-pink-600" />}
                 iconBgColor="pink"
+                className="hidden lg:block"
               />
             </div>
 
-            {/* Main Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-              {/* Left Column - Messages and Conversion History */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-4 mb-4">
               {SHOW_MESSAGES_AND_HISTORY && (
                 <div className="lg:col-span-1 space-y-4">
                   <Messages messages={messages} />
@@ -114,7 +109,6 @@ const Dashboard: React.FC = () => {
                 </div>
               )}
 
-              {/* Right Column - Latest Sales Table */}
               <div className={SHOW_MESSAGES_AND_HISTORY ? 'lg:col-span-2' : 'lg:col-span-3'}>
                 <LatestSalesTable sales={sales} />
                 <div className="mt-4">
@@ -130,6 +124,7 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </main>
+        <BottomNav />
       </div>
     </div>
   )

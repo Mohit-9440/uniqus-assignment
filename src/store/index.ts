@@ -1,16 +1,12 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
+
 interface AppState {
-  // UI State
   sidebarOpen: boolean
   setSidebarOpen: (open: boolean) => void
   toggleSidebar: () => void
-
-  // Theme
   theme: 'light' | 'dark'
   setTheme: (theme: 'light' | 'dark') => void
-
-  // User
   user: any | null
   setUser: (user: any) => void
 }
@@ -18,16 +14,11 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   devtools(
     (set) => ({
-      // UI State
       sidebarOpen: true,
       setSidebarOpen: (open) => set({ sidebarOpen: open }),
       toggleSidebar: () => set((state) => ({ sidebarOpen: !state.sidebarOpen })),
-
-      // Theme
       theme: 'light',
       setTheme: (theme) => set({ theme }),
-
-      // User
       user: null,
       setUser: (user) => set({ user }),
     }),

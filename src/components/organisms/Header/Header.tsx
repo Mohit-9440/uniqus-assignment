@@ -9,9 +9,6 @@ export interface HeaderProps {
   className?: string;
 }
 
-/**
- * Header component
- */
 export const Header: React.FC<HeaderProps> = ({ className }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -28,37 +25,24 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
   return (
     <header
       className={cn(
-        "fixed top-0 left-20 right-0 h-16 bg-header-bg flex items-center justify-between px-6 z-[9999]",
-        sidebarOpen && "left-64",
+        "fixed top-0 left-0 right-0 h-16 bg-header-bg flex items-center justify-between z-[9999]",
+        "min-[480px]:left-20 min-[480px]:px-6 px-4",
+        sidebarOpen && "min-[480px]:left-64",
         "transition-all duration-300",
         className
       )}
       style={{
         backgroundColor: "#f9fafb",
-        // backdropFilter: 'none',
         WebkitBackdropFilter: "none",
       }}
     >
-      {/* Left side - Hamburger and Dashboard text */}
-      <div className="flex items-center gap-4">
-        <button
-          onClick={toggleSidebar}
-          className="rounded-md p-2 hover:bg-gray-200 transition-colors"
-          aria-label="Toggle menu"
-        >
-          <Menu className="h-5 w-5 text-gray-700" />
-        </button>
-        <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
-      </div>
-
-      {/* Right side - Search and Plus */}
-      <div className="flex items-center gap-4 relative">
-        <div className="relative" data-search-container>
+      <div className="flex items-center gap-2 lg:gap-4 flex-1 min-[480px]:flex-initial">
+        <div className="relative min-[480px]:hidden" data-search-container>
           <div
             className={cn(
               "flex items-center gap-2 rounded-lg transition-all duration-300",
               searchOpen
-                ? "w-full px-3 py-2 shadow-md bg-white"
+                ? "w-48 px-3 py-2 shadow-md bg-white"
                 : "w-10 h-10 justify-center cursor-pointer bg-gray-100 hover:bg-gray-300"
             )}
             onClick={() => {
@@ -90,6 +74,57 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
             searchValue={searchValue}
           />
         </div>
+
+        <button
+          onClick={toggleSidebar}
+          className="hidden min-[480px]:flex rounded-md p-2 hover:bg-gray-200 transition-colors"
+          aria-label="Toggle menu"
+        >
+          <Menu className="h-5 w-5 text-gray-700" />
+        </button>
+
+        <h1 className="text-base lg:text-lg font-semibold text-gray-800 flex-1 text-center min-[480px]:flex-initial min-[480px]:text-left">Dashboard</h1>
+      </div>
+
+      <div className="flex items-center gap-2 lg:gap-4 relative">
+        <div className="relative hidden min-[480px]:block" data-search-container>
+          <div
+            className={cn(
+              "flex items-center gap-2 rounded-lg transition-all duration-300",
+              searchOpen
+                ? "w-48 sm:w-64 lg:w-full px-3 py-2 shadow-md bg-white"
+                : "w-10 h-10 justify-center cursor-pointer bg-gray-100 hover:bg-gray-300"
+            )}
+            onClick={() => {
+              if (!searchOpen) {
+                setSearchOpen(true);
+                setProfileOpen(false);
+              }
+            }}
+          >
+            {searchOpen ? (
+              <>
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  className="flex-1 outline-none text-sm text-gray-900 bg-transparent"
+                  placeholder="Search..."
+                />
+                <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
+              </>
+            ) : (
+              <Search className="h-5 w-5 text-gray-700" />
+            )}
+          </div>
+          <SearchDropdown
+            isOpen={searchOpen}
+            onClose={() => setSearchOpen(false)}
+            searchValue={searchValue}
+          />
+        </div>
+
         <div className="relative">
           <button
             onClick={() => {

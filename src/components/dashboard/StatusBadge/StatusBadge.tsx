@@ -8,9 +8,6 @@ export interface StatusBadgeProps {
   className?: string
 }
 
-/**
- * StatusBadge component
- */
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
   status,
   className,
