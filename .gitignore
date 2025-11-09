@@ -39,3 +39,10 @@ build
 dist
 dist-ssr
 *.local
+
+*storybook.log
+storybook-static
+
+# Test coverage
+coverage
+.nyc_output
