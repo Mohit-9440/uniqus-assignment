@@ -33,6 +33,6 @@
       "@/store/*": ["./src/store/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "src/test/vitest.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

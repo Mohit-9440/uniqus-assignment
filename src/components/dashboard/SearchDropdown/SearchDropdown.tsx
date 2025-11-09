@@ -21,7 +21,7 @@ export interface SearchDropdownProps {
 export const SearchDropdown: React.FC<SearchDropdownProps> = ({
   isOpen,
   onClose,
-  searchValue,
+  searchValue: _searchValue,
   className,
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
