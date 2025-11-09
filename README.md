@@ -2,6 +2,23 @@
 
 A modern, responsive CRM dashboard application built with React, TypeScript, and Tailwind CSS. This project implements a pixel-perfect design matching the provided Figma specifications with full mobile responsiveness.
 
+## 📸 Screenshots
+
+### Desktop View (Laptop/Desktop)
+<img width="1512" height="826" alt="desktopview3" src="https://github.com/user-attachments/assets/5f4f1951-3207-4061-ba82-d8df607e337e" />
+<img width="1512" height="827" alt="desktopview2" src="https://github.com/user-attachments/assets/f1edd2c0-11fc-4a4d-a66c-5e1e01937586" />
+<img width="1512" height="823" alt="desktopview" src="https://github.com/user-attachments/assets/2d932e3f-cd81-4107-8a73-1ac65ca5a0d2" />
+
+
+*Dashboard view on desktop/laptop screens (≥480px)*
+
+### Mobile View
+<img width="373" height="744" alt="mobileview2" src="https://github.com/user-attachments/assets/1d27e3b8-88f2-45f2-8e3b-e66cf53f475a" />
+<img width="355" height="748" alt="mobileview" src="https://github.com/user-attachments/assets/bba48e89-df62-4efe-aad8-5b29a07bcd2f" />
+
+
+*Dashboard view on mobile devices (<480px)*
+
 ## 🚀 Features
 
 - **Dashboard Overview**: Comprehensive metrics cards, sales table, and data visualization
