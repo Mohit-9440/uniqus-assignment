@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { cn } from '@/utils/cn'
 import { useAppStore } from '@/store'
 import { 
@@ -21,24 +22,24 @@ interface NavItem {
   id: string
   label: string
   icon: React.ReactNode
-  active?: boolean
+  path: string
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
   const { sidebarOpen } = useAppStore()
 
   const navItems: NavItem[] = [
-    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" />, active: true },
-    { id: 'projects', label: 'Projects', icon: <Folder className="w-5 h-5" /> },
-    { id: 'tasks', label: 'Tasks', icon: <FileText className="w-5 h-5" /> },
-    { id: 'calendar', label: 'Calendar', icon: <Calendar className="w-5 h-5" /> },
-    { id: 'contacts', label: 'Contacts', icon: <Users className="w-5 h-5" /> },
-    { id: 'messages', label: 'Messages', icon: <MessageSquare className="w-5 h-5" /> },
-    { id: 'products', label: 'Products', icon: <FileText className="w-5 h-5" /> },
-    { id: 'invoices', label: 'Invoices', icon: <FileText className="w-5 h-5" /> },
-    { id: 'notifications', label: 'Notifications', icon: <Bell className="w-5 h-5" /> },
-    { id: 'reports', label: 'Reports', icon: <FileText className="w-5 h-5" /> },
-    { id: 'help', label: 'Help Center', icon: <HelpCircle className="w-5 h-5" /> },
+    { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard className="w-5 h-5" />, path: '/' },
+    { id: 'projects', label: 'Projects', icon: <Folder className="w-5 h-5" />, path: '/projects' },
+    { id: 'tasks', label: 'Tasks', icon: <FileText className="w-5 h-5" />, path: '/tasks' },
+    { id: 'calendar', label: 'Calendar', icon: <Calendar className="w-5 h-5" />, path: '/calendar' },
+    { id: 'contacts', label: 'Contacts', icon: <Users className="w-5 h-5" />, path: '/contacts' },
+    { id: 'messages', label: 'Messages', icon: <MessageSquare className="w-5 h-5" />, path: '/messages' },
+    { id: 'products', label: 'Products', icon: <FileText className="w-5 h-5" />, path: '/products' },
+    { id: 'invoices', label: 'Invoices', icon: <FileText className="w-5 h-5" />, path: '/invoices' },
+    { id: 'notifications', label: 'Notifications', icon: <Bell className="w-5 h-5" />, path: '/notifications' },
+    { id: 'reports', label: 'Reports', icon: <FileText className="w-5 h-5" />, path: '/reports' },
+    { id: 'help', label: 'Help Center', icon: <HelpCircle className="w-5 h-5" />, path: '/help' },
   ]
 
   return (
@@ -62,45 +63,49 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
 
       <nav className="flex-1 flex flex-col gap-2 px-2 relative">
         {navItems.map((item) => (
-          <div key={item.id} className="relative">
-            {item.active && (
-              <>
-                <div 
-                  className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-full"
-                  style={{ backgroundColor: '#1976D2' }}
-                ></div>
-                <div 
-                  className="absolute top-0 bottom-0 w-1"
-                  style={{ backgroundColor: '#1976D2', right: '-8px' }}
-                ></div>
-              </>
+          <NavLink
+            key={item.id}
+            to={item.path}
+            className={({ isActive }) => cn(
+              'relative flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+              isActive
+                ? 'bg-sidebar-active'
+                : 'hover:bg-gray-100',
+              !sidebarOpen && 'justify-center'
             )}
-            <div
-              className={cn(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-colors',
-                item.active
-                  ? 'bg-sidebar-active'
-                  : 'hover:bg-gray-100',
-                !sidebarOpen && 'justify-center'
-              )}
-              style={item.active ? {
-                backgroundColor: '#E3F2FD',
-              } : {}}
-            >
-              <div className={cn('flex-shrink-0', item.active && 'text-sidebar-active-text')}>
-                {item.icon}
-              </div>
-              {sidebarOpen && (
-                <span className={cn(
-                  'text-sm font-medium whitespace-nowrap',
-                  item.active ? 'text-sidebar-active-text font-semibold' : 'text-gray-600'
-                )}>
-                  {item.label}
+            style={({ isActive }) => isActive ? {
+              backgroundColor: '#E3F2FD',
+            } : {}}
+          >
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <>
+                    <div 
+                      className="absolute -left-2 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-full"
+                      style={{ backgroundColor: '#1976D2' }}
+                    ></div>
+                    <div 
+                      className="absolute top-0 bottom-0 w-1"
+                      style={{ backgroundColor: '#1976D2', right: '-8px' }}
+                    ></div>
+                  </>
+                )}
+                <div className={cn('flex-shrink-0', isActive && 'text-sidebar-active-text')}>
+                  {item.icon}
+                </div>
+                {sidebarOpen && (
+                  <span className={cn(
+                    'text-sm font-medium whitespace-nowrap',
+                    isActive ? 'text-sidebar-active-text font-semibold' : 'text-gray-600'
+                  )}>
+                    {item.label}
                   </span>
                 )}
-            </div>
-          </div>
-          ))}
+              </>
+            )}
+          </NavLink>
+        ))}
       </nav>
 
       <div className={cn('px-4 border-gray-200', !sidebarOpen && 'px-2')}>

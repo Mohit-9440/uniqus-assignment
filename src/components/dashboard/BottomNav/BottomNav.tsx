@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { cn } from '@/utils/cn'
 import { Clock, Briefcase, CheckSquare, Folder, Calendar, Menu } from 'lucide-react'
 
@@ -8,12 +9,12 @@ export interface BottomNavProps {
 
 export const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
   const navItems = [
-    { id: 'dashboard', icon: Clock, active: true },
-    { id: 'projects', icon: Briefcase },
-    { id: 'tasks', icon: CheckSquare },
-    { id: 'files', icon: Folder },
-    { id: 'calendar', icon: Calendar },
-    { id: 'menu', icon: Menu },
+    { id: 'dashboard', icon: Clock, path: '/' },
+    { id: 'projects', icon: Briefcase, path: '/projects' },
+    { id: 'tasks', icon: CheckSquare, path: '/tasks' },
+    { id: 'files', icon: Folder, path: '/products' },
+    { id: 'calendar', icon: Calendar, path: '/calendar' },
+    { id: 'menu', icon: Menu, path: '/contacts' },
   ]
 
   return (
@@ -28,27 +29,32 @@ export const BottomNav: React.FC<BottomNavProps> = ({ className }) => {
         {navItems.map((item) => {
           const Icon = item.icon
           return (
-            <button
+            <NavLink
               key={item.id}
-              className={cn(
+              to={item.path}
+              className={({ isActive }) => cn(
                 'flex flex-col items-center justify-center gap-0.5 h-full transition-colors relative',
-                item.active
+                isActive
                   ? 'text-blue-600'
                   : 'text-gray-500'
               )}
             >
-              <div
-                className={cn(
-                  'w-9 h-9 rounded-lg flex items-center justify-center transition-colors',
-                  item.active ? 'bg-blue-50' : ''
-                )}
-              >
-                <Icon className="w-5 h-5" />
-              </div>
-              {item.active && (
-                <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-600"></div>
+              {({ isActive }) => (
+                <>
+                  <div
+                    className={cn(
+                      'w-9 h-9 rounded-lg flex items-center justify-center transition-colors',
+                      isActive ? 'bg-blue-50' : ''
+                    )}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  {isActive && (
+                    <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-600"></div>
+                  )}
+                </>
               )}
-            </button>
+            </NavLink>
           )
         })}
       </div>

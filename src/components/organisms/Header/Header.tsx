@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { cn } from "@/utils/cn";
 import { Menu, Search, Plus } from "lucide-react";
 import { SearchDropdown } from "@/components/dashboard/SearchDropdown";
@@ -10,11 +11,21 @@ export interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ className }) => {
+  const location = useLocation();
   const [searchOpen, setSearchOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("Bradley Wilkins");
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { toggleSidebar, sidebarOpen } = useAppStore();
+
+  const getPageTitle = () => {
+    const path = location.pathname;
+    if (path === '/') return 'Dashboard';
+    const title = path.slice(1).split('-').map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+    return title;
+  };
 
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
@@ -83,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({ className }) => {
           <Menu className="h-5 w-5 text-gray-700" />
         </button>
 
-        <h1 className="text-base lg:text-lg font-semibold text-gray-800 flex-1 text-center min-[480px]:flex-initial min-[480px]:text-left">Dashboard</h1>
+        <h1 className="text-base lg:text-lg font-semibold text-gray-800 flex-1 text-center min-[480px]:flex-initial min-[480px]:text-left">{getPageTitle()}</h1>
       </div>
 
       <div className="flex items-center gap-2 lg:gap-4 relative">
